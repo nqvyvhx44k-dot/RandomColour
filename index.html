@@ -1,0 +1,48 @@
+import React, { useState } from 'react';
+
+export default function App() {
+  // 精選明確、鮮豔的顏色，以及新加入的中性色與粉色
+  const colors = [
+    '#FF3333', // 鮮豔紅
+    '#FF9500', // 亮橘色
+    '#FFCC00', // 陽光黃
+    '#34C759', // 鮮明綠
+    '#007AFF', // 純粹正藍
+    '#FF82AB', // 更粉的粉紅色 (取代原本的亮桃紅)
+    '#111111', // 質感黑
+    '#FAFAFA', // 乾淨白
+    '#9E9E9E', // 沉穩灰
+    '#795548', // 溫暖咖啡色
+    '#9C27B0'  // 正紫色
+  ];
+
+  // 初始顏色設定為陽光黃
+  const [bgColor, setBgColor] = useState('#FFCC00');
+
+  const changeColor = () => {
+    let newColor;
+    // 確保每次點擊都會換到不一樣的顏色
+    do {
+      newColor = colors[Math.floor(Math.random() * colors.length)];
+    } while (newColor === bgColor);
+    
+    setBgColor(newColor);
+  };
+
+  return (
+    <div
+      className="h-screen w-screen flex items-center justify-center transition-colors duration-300 ease-in-out"
+      style={{ backgroundColor: bgColor }}
+    >
+      <button
+        onClick={changeColor}
+        className="px-10 py-5 bg-white/95 hover:bg-white text-gray-800 font-bold rounded-full shadow-xl text-2xl tracking-wide active:scale-90 transition-all cursor-pointer select-none"
+      >
+        換個顏色
+      </button>
+    </div>
+  );
+}
+
+
+
